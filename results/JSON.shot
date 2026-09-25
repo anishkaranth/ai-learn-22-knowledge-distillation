@@ -1,0 +1,22 @@
+{
+  "project": "ai-learn-22-knowledge-distillation",
+  "seed": 42,
+  "config": {
+    "teacher_sizes": [20, 256, 256, 8],
+    "student_sizes": [20, 16, 8],
+    "n_teacher_train": 6000,
+    "n_transfer": 600,
+    "n_test": 3000,
+    "teacher_epochs": 20,
+    "student_epochs": 200,
+    "lr_teacher": 0.001,
+    "lr_student": 0.003,
+    "batch_teacher": 64,
+    "batch_student": 32,
+    "alpha": 0.9,
+    "temperatures": [1, 2, 4, 8, 16],
+    "ece_bins": 15
+  },
+  "params": {"teacher": 73224, "student": 472},
+  "headline": {"teacher_acc": 0.9817, "teacher_params": 73224, "student_params": 472, "compression_x": 155.1, "student_hard_acc": 0.876, "student_hard_ece": 0.0809, "student_kd_best_T": 8, "student_kd_best_acc": 0.9383, "student_kd_best_ece": 0.0339, "student_kd_T1_acc": 0.8787, "student_hard_full_data_acc": 0.9553}
+}

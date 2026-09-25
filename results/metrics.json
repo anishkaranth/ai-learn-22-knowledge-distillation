@@ -1,0 +1,63 @@
+{
+ "project": "ai-learn-22-knowledge-distillation",
+ "seed": 42,
+ "config": {
+  "teacher_sizes": [20, 256, 256, 8],
+  "student_sizes": [20, 16, 8],
+  "n_teacher_train": 6000,
+  "n_transfer": 600,
+  "n_test": 3000,
+  "teacher_epochs": 20,
+  "student_epochs": 200,
+  "lr_teacher": 0.001,
+  "lr_student": 0.003,
+  "batch_teacher": 64,
+  "batch_student": 32,
+  "alpha": 0.9,
+  "temperatures": [1, 2, 4, 8, 16],
+  "ece_bins": 15
+ },
+ "params": {"teacher": 73224, "student": 472},
+ "teacher": {"acc": 0.9817, "ece": 0.0078},
+ "student_hard_transfer": {"acc": 0.876, "ece": 0.0809},
+ "student_hard_full_6000": {"acc": 0.9553, "ece": 0.0065},
+ "kd_sweep": [
+  {"T": 1, "alpha": 0.9, "acc": 0.8787, "ece": 0.077},
+  {"T": 1, "alpha": 1.0, "acc": 0.8797, "ece": 0.0767},
+  {"T": 2, "alpha": 0.9, "acc": 0.899, "ece": 0.0681},
+  {"T": 2, "alpha": 1.0, "acc": 0.9, "ece": 0.067},
+  {"T": 4, "alpha": 0.9, "acc": 0.9297, "ece": 0.0402},
+  {"T": 4, "alpha": 1.0, "acc": 0.9317, "ece": 0.0398},
+  {"T": 8, "alpha": 0.9, "acc": 0.9383, "ece": 0.0339},
+  {"T": 8, "alpha": 1.0, "acc": 0.94, "ece": 0.0334},
+  {"T": 16, "alpha": 0.9, "acc": 0.9287, "ece": 0.041},
+  {"T": 16, "alpha": 1.0, "acc": 0.928, "ece": 0.0401}
+ ],
+ "best_kd": {"T": 8, "alpha": 0.9, "acc": 0.9383, "ece": 0.0339},
+ "teacher_soft_targets_example0": {
+  "1": [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0],
+  "2": [0.0, 0.0003, 0.0, 0.9997, 0.0, 0.0, 0.0, 0.0],
+  "4": [0.0013, 0.0161, 0.0017, 0.9749, 0.0024, 0.0005, 0.0009, 0.0022],
+  "8": [0.0272, 0.0946, 0.0308, 0.7367, 0.0366, 0.0171, 0.0223, 0.0347],
+  "16": [0.0762, 0.1422, 0.0811, 0.3966, 0.0884, 0.0604, 0.069, 0.0861]
+ },
+ "reliability": {
+  "teacher": {
+   "centres": [0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95],
+   "acc": [null, null, null, 1.0, null, 0.64, 0.5556, 0.75, 0.8049, 0.9924],
+   "count": [0, 0, 0, 1, 0, 25, 18, 32, 41, 2883]
+  },
+  "student_hard": {
+   "centres": [0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95],
+   "acc": [null, null, null, 0.25, 0.2222, 0.4697, 0.5634, 0.4615, 0.6329, 0.9298],
+   "count": [0, 0, 0, 4, 18, 66, 71, 91, 158, 2592]
+  },
+  "student_kd_T8": {
+   "centres": [0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95],
+   "acc": [null, null, null, 0.0, 0.4286, 0.38, 0.5227, 0.6613, 0.7113, 0.9712],
+   "count": [0, 0, 0, 1, 7, 50, 44, 62, 97, 2739]
+  }
+ },
+ "headline": {"teacher_acc": 0.9817, "teacher_params": 73224, "student_params": 472, "compression_x": 155.1, "student_hard_acc": 0.876, "student_hard_ece": 0.0809, "student_kd_best_T": 8, "student_kd_best_acc": 0.9383, "student_kd_best_ece": 0.0339, "student_kd_T1_acc": 0.8787, "student_hard_full_data_acc": 0.9553},
+ "wall_time_s": 6.79
+}
